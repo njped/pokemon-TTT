@@ -12,7 +12,7 @@ constructor(private http: HttpClient) { }
 endpointURL: string = 'https://pokeapi.co/api/v2/';
 
 searchPokemon(name: string): Observable<any> {
-  return this.http.get<any>(this.endpointURL + 'pokemon/' + name)
+  return this.http.get<any>(this.endpointURL + 'pokemon/' + name.toLowerCase())
 }
 
 }
