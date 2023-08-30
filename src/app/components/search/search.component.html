@@ -15,11 +15,13 @@
 
 <span *ngIf="imageArray">
   <a *ngFor="let image of imageArray">
-      <img [src]=image alt="">
+    <button>
+      <img [src]=image alt="" (click)="selectImage(image)">
+    </button>
   </a>
 </span>
 
 <div>
   <h3>Api Response</h3>
-  <p *ngIf="apiResponse">{{apiResponse}}</p>
+  <p *ngIf="apiResponse">{{apiResponse | json}}</p>
 </div>
