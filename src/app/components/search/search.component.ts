@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GitDatInfoService } from 'src/app/services/git-dat-info.service';
 import { CacheDatInfoService } from 'src/app/services/cacheDatInfo.service';
 import { Player } from 'src/app/interfaces/player';
@@ -20,7 +20,8 @@ export class SearchComponent implements OnInit {
   constructor(
     private gitDatInfo: GitDatInfoService, 
     private route: ActivatedRoute,
-    private cacheDatInfo: CacheDatInfoService, 
+    private cacheDatInfo: CacheDatInfoService,
+    private router: Router, 
     fb: FormBuilder ) {
     this.form = fb.group({
       searchTerm: ['Arceus']
@@ -34,7 +35,9 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-  this.search();
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false
+    this.search();
+    
   }
 
   search() {
